@@ -38,7 +38,7 @@ namespace DeleteSupplierFunc_AzureTBL
                 CloudTableClient tblclient = storageAcc.CreateCloudTableClient(new TableClientConfiguration());
 
                 // get customer table
-                CloudTable cloudTable = tblclient.GetTableReference("Supplier");
+                CloudTable cloudTable = tblclient.GetTableReference("Suppliers");
 
                 TableOperation retrieveOperationForDelete = TableOperation.Retrieve<Supplier>(id, id);
                 TableResult retrievedResultForDelete = cloudTable.Execute(retrieveOperationForDelete);
