@@ -23,11 +23,16 @@ namespace DeleteSupplierFunc_AzureTBL
             try
             {
                 string id = req.Query["id"];
+
+                string connectionString = Environment.GetEnvironmentVariable("ConnectionString");
+
+
+
                 if (string.IsNullOrEmpty(id))
                 {
                     return new OkObjectResult(new ResponseModel() { Data = "Id was not supplied", Success = false });
                 }
-                CloudStorageAccount storageAcc = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=tablestorage1;AccountKey=mvdDaDEswE16qPIWefkIjcpiNjpvC8GbXEglDBjrMKItK0QsFXFxr0SwNSjIdzdKeDrShIZ6abHw+AStfRWs5A==;EndpointSuffix=core.windows.net");
+                CloudStorageAccount storageAcc = CloudStorageAccount.Parse(connectionString);
 
                 //// create table client
                 CloudTableClient tblclient = storageAcc.CreateCloudTableClient(new TableClientConfiguration());
